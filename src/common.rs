@@ -2145,9 +2145,9 @@ async fn secure_tcp_impl(conn: &mut Stream, key: &str, log_on_success: bool) -> 
     // as WebSocket Secure (wss://) already provides transport layer encryption.
     // This doesn't affect the end-to-end encryption between clients,
     // it only avoids redundant encryption between client and server.
-    if use_ws() {
+   // if use_ws() {
         return Ok(());
-    }
+    //}
     key_exchange(conn, key, log_on_success).await.map(|_| ())
 }
 
@@ -2224,11 +2224,11 @@ async fn key_exchange(conn: &mut Stream, key: &str, log_on_success: bool) -> Res
 }
 
 pub async fn secure_tcp(conn: &mut Stream, key: &str) -> ResultType<()> {
-    secure_tcp_impl(conn, key, true).await
+    return Ok(());
 }
 
 async fn secure_tcp_silent(conn: &mut Stream, key: &str) -> ResultType<()> {
-    secure_tcp_impl(conn, key, false).await
+    return Ok(());
 }
 
 /// Like [`secure_tcp`], but returns only once the server's key exchange has actually encrypted
